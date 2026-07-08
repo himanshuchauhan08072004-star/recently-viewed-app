@@ -1,0 +1,24 @@
+import { Request, Response, NextFunction } from 'express';
+import { AnyZodObject, ZodError } from 'zod';
+import { ApiError } from '../utils/ApiError';
+
+export const validate =
+  (schema: AnyZodObject) =>
+  (req: Request, _res: Response, next: NextFunction) => {
+    try {
+      schema.parse({
+        body: req.body,
+        params: req.params,
+        query: req.query,
+      });
+      next();
+    } catch (err) {
+      if (err instanceof ZodError) {
+        const message = err.errors
+          .map((e) => `${e.path.join('.')}: ${e.message}`)
+          .join(', ');
+        return next(ApiError.badRequest(message));
+      }
+      next(err);
+    }
+  };
