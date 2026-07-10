@@ -4,3 +4,5 @@ node_modules/
    dist/
    .expo/
    *.log
+# Local Netlify folder
+.netlify

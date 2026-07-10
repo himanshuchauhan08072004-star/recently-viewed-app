@@ -1,11 +1,11 @@
 // For local dev on physical device, use your PC's LAN IP instead of localhost
 // e.g. 'http://192.168.1.5:5000/api'. After deployment, point this to your
 // live Render URL, e.g. 'https://recently-viewed-backend.onrender.com/api'.
-export const API_BASE_URL = 'http://192.168.31.120:5000/api';
+export const API_BASE_URL = 'https://recently-viewed-app.onrender.com/api';
 
 // Same host as API_BASE_URL but without the /api suffix — socket.io connects
 // at the server root, not under the REST path.
-export const SOCKET_BASE_URL = 'http://192.168.31.120:5000';
+export const SOCKET_BASE_URL = 'https://recently-viewed-app.onrender.com';
 
 export const MAX_RECENTLY_VIEWED = 20;
 

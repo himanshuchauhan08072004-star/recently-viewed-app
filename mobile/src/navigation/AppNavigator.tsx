@@ -3,6 +3,7 @@ import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LoginScreen } from '@/screens/Auth/LoginScreen';
+import { RegisterScreen } from '@/screens/Auth/RegisterScreen';
 import { RecentlyViewedScreen } from '@/screens/RecentlyViewed/RecentlyViewedScreen';
 import { ContinueShoppingScreen } from '@/screens/ContinueShopping/ContinueShoppingScreen';
 import { ProductDetailScreen } from '@/screens/ProductDetail/ProductDetailScreen';
@@ -14,6 +15,7 @@ import { Product } from '@/types';
 export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
+  Register: undefined;
   Browse: undefined;
   ProductDetail: { product: Product };
 };
@@ -64,6 +66,7 @@ export function AppNavigator() {
       <Stack.Navigator screenOptions={{ headerShown: true }}>
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Shop' }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'Log In' }} />
+   <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'Sign Up' }} />
         <Stack.Screen name="Browse" component={ProductListScreen} options={{ title: 'All Products' }} />
         <Stack.Screen
           name="ProductDetail"

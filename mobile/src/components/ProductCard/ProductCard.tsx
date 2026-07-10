@@ -55,9 +55,16 @@ function ProductCardBase({ product, onView, onAddToCart, onWishlist }: ProductCa
           resizeMode="cover"
           onLoadEnd={() => setImageLoading(false)}
         />
-        <Pressable style={styles.wishlistBtn} onPress={handleWishlist} hitSlop={8}>
-          <Text style={styles.wishlistIcon}>{wishlisted ? '♥' : '♡'}</Text>
-        </Pressable>
+       <Pressable
+  style={styles.wishlistBtn}
+  onPress={(e) => {
+    e.stopPropagation();
+    handleWishlist();
+  }}
+  hitSlop={8}
+>
+  <Text style={styles.wishlistIcon}>{wishlisted ? '♥' : '♡'}</Text>
+</Pressable>
       </View>
 
       <View style={styles.info}>
@@ -80,17 +87,26 @@ function ProductCardBase({ product, onView, onAddToCart, onWishlist }: ProductCa
           <Text style={styles.ratingBadge}>{product.rating.toFixed(1)} ★</Text>
         </View>
 
-        <View style={styles.actions}>
-          <Pressable
-            style={[styles.actionBtn, styles.primaryBtn]}
-            onPress={() => onAddToCart(product)}
-          >
-            <Text style={styles.primaryBtnText}>Add to Cart</Text>
-          </Pressable>
-          <Pressable style={[styles.actionBtn, styles.secondaryBtn]} onPress={() => onView(product)}>
-            <Text style={styles.secondaryBtnText}>View</Text>
-          </Pressable>
-        </View>
+      <View style={styles.actions}>
+  <Pressable
+    style={[styles.actionBtn, styles.primaryBtn]}
+    onPress={(e) => {
+      e.stopPropagation();
+      onAddToCart(product);
+    }}
+  >
+    <Text style={styles.primaryBtnText}>Add to Cart</Text>
+  </Pressable>
+  <Pressable
+    style={[styles.actionBtn, styles.secondaryBtn]}
+    onPress={(e) => {
+      e.stopPropagation();
+      onView(product);
+    }}
+  >
+    <Text style={styles.secondaryBtnText}>View</Text>
+  </Pressable>
+</View>
       </View>
     </Pressable>
   );
